@@ -14,5 +14,5 @@ pipenv run -- flask run --host 0.0.0.0
 
 Posting a plain text file
 ```
-jq -Rns inputs diemade.txt | curl -vl localhost:5000 -d@- -H "Content-Type: application/json"
+curl -vl localhost:5000 --data-binary @training-data.txt -H "Content-Type: text/plain"
 ```
