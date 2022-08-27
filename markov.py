@@ -24,6 +24,14 @@ class MarkovModel:
         return s.translate(str.maketrans('','',string.punctuation))
 
     def train(self, training_data):
+        unwanted_chars = set({})
+        for char in training_data:
+            if char.lower() not in "abcdefghijklmnopqrstuvwxyzßäöü\n ":
+                unwanted_chars.add(char)
+
+        for c in unwanted_chars:
+            training_data = training_data.replace(c, "")
+        
         paragraphs = paragraphs_re.findall(training_data)
 
         for match in paragraphs: # input_file["quotes"]:  # traverse poems, populate dictionary
